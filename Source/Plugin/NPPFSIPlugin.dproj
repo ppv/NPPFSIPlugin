@@ -1,0 +1,140 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{A3E4C38D-75E0-4E7C-AB76-56C5F073133C}</ProjectGuid>
+			<MainSource>NPPFSIPlugin.dpr</MainSource>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>12.0</ProjectVersion>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UsePackage>vcl;rtl;vclx;vclimg;vclactnband;dbrtl;vcldb;vcldbx;bdertl;vcltouch;xmlrtl;dsnap;dsnapcon;TeeUI;TeeDB;Tee;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_100_140;Intraweb_100_140;VclSmp;vclie;inetdb;webdsnap;websnap;inetdbbde;inetdbxpress;soaprtl;vclribbon;DbxCommonDriver;DbxClientDriver;DBXInterBaseDriver;DBXMySQLDriver;dbexpress;dbxcds;ScintillaD2010</DCC_UsePackage>
+			<DCC_DcuOutput>Lib\</DCC_DcuOutput>
+			<DCC_ExeOutput>Bin\</DCC_ExeOutput>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_E>false</DCC_E>
+			<DCC_DependencyCheckOutputName>Bin\NPPFSIPlugin.dll</DCC_DependencyCheckOutputName>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_Platform>x86</DCC_Platform>
+			<DCC_S>false</DCC_S>
+			<GenDll>true</GenDll>
+			<DCC_N>false</DCC_N>
+			<DCC_F>false</DCC_F>
+			<DCC_K>false</DCC_K>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_DependencyCheckOutputName>Bin\Release\NPPFSIPlugin.dll</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>Bin\Release</DCC_ExeOutput>
+			<DCC_DcuOutput>Lib\Release</DCC_DcuOutput>
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_UnitSearchPath>C:\Pappy\Develop\Personal\FSIPluginForNPP\Src;C:\Pappy\Develop\Personal\FSIPluginForNPP\Forms;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_DebugDCUs>true</DCC_DebugDCUs>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_ExeOutput>C:\Program Files\Notepad++\plugins\</DCC_ExeOutput>
+			<DCC_DependencyCheckOutputName>C:\Program Files\Notepad++\plugins\NPPFSIPlugin.dll</DCC_DependencyCheckOutputName>
+			<DCC_DcuOutput>Lib\Debug</DCC_DcuOutput>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="NPPFSIPlugin.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="Src\Pipes.pas"/>
+			<DCCReference Include="Src\Scintilla.pas"/>
+			<DCCReference Include="Src\NPP.pas"/>
+			<DCCReference Include="Src\FSIWrapper.pas"/>
+			<DCCReference Include="Src\Constants.pas"/>
+			<DCCReference Include="Src\Config.pas"/>
+			<DCCReference Include="Forms\FSIHostForm.pas">
+				<Form>FrmFSIHost</Form>
+			</DCCReference>
+			<DCCReference Include="Forms\ConfigForm.pas">
+				<Form>FrmConfiguration</Form>
+			</DCCReference>
+			<DCCReference Include="Forms\AboutForm.pas">
+				<Form>FrmAbout</Form>
+			</DCCReference>
+			<None Include="Config\NPPFSIPlugin.ini"/>
+			<None Include="NPPFSIPlugin.todo"/>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">NPPFSIPlugin.dpr</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+						<Parameters Name="HostApplication">C:\Program Files\Notepad++\notepad++.exe</Parameters>
+						<Parameters Name="DebugCWD">C:\Program Files\Notepad++\plugins\</Parameters>
+						<Parameters Name="DebugSourceDirs">C:\Pappy\Develop\Personal\FSIPluginForNPP\Src;C:\Pappy\Develop\Personal\FSIPluginForNPP\Forms</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">0</VersionInfo>
+						<VersionInfo Name="MinorVer">1</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1033</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription">F# Interactive Plugin For Notepad++</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.1.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright">Copyright 2010 Prapin Peethambaran</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k140.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclofficexp140.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>
