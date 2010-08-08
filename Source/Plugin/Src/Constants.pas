@@ -110,7 +110,7 @@ const
   /// <summary>
   /// App url
   /// </summary>
-  FSI_PLUGIN_URL = 'http://www.prapinpv.com/apps/nppfsiplugin';
+  FSI_PLUGIN_URL = 'http://github.com/ppv/NPPFSIPlugin';
 
   // config file related
   CONFIG_FSI_SECTION_NAME = 'FSI';

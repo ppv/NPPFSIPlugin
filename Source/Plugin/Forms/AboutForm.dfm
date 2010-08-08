@@ -25,7 +25,6 @@ object FrmAbout: TFrmAbout
     BevelOuter = bvNone
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 427
     DesignSize = (
       413
       138)

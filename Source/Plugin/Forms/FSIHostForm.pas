@@ -172,12 +172,14 @@ end;
 
 procedure TFrmFSIHost.doOnResultOutput(sender: TObject);
 begin
-  SendDockDialogMsg(Handle, FSI_PLUGIN_WND_TITLE, '', FSI_PLUGIN_MODULE_FILENAME, FSI_INVOKE_CMD_ID, DWS_ADDINFO, 0);
+  // disabled for ver 0.1
+  //SendDockDialogMsg(Handle, FSI_PLUGIN_WND_TITLE, '', FSI_PLUGIN_MODULE_FILENAME, FSI_INVOKE_CMD_ID, DWS_ADDINFO, 0);
 end;
 
 procedure TFrmFSIHost.doOnSendText(sender: TObject);
 begin
-  SendDockDialogMsg(Handle, FSI_PLUGIN_WND_TITLE, 'working', FSI_PLUGIN_MODULE_FILENAME, FSI_INVOKE_CMD_ID, DWS_ADDINFO, 0);
+  // disabled for ver 0.1
+  //SendDockDialogMsg(Handle, FSI_PLUGIN_WND_TITLE, 'working', FSI_PLUGIN_MODULE_FILENAME, FSI_INVOKE_CMD_ID, DWS_ADDINFO, 0);
 end;
 
 {$ENDREGION}

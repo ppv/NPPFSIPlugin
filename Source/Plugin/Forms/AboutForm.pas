@@ -87,9 +87,10 @@ end;
 
 function TFrmAbout.getBuildNumber: String;
 var
-  fileVersionInfoSize, dummy, fileInfoLength: Cardinal;
+  fileVersionInfoSize, dummy: Cardinal;
   buffer: PByte;
   fileInfo: PVSFixedFileInfo;
+  vsVersionInfoStart: PByte;
 begin
   fileVersionInfoSize := GetFileVersionInfoSize(PChar(FSI_PLUGIN_MODULE_FILENAME), dummy);
 
@@ -99,15 +100,21 @@ begin
     try
       if (Win32Check(GetFileVersionInfo(PChar(FSI_PLUGIN_MODULE_FILENAME), 0, fileVersionInfoSize, buffer))) then
       begin
-        if VerQueryValue(buffer, PChar('\'), Pointer(fileInfo), fileInfoLength) then
+        // the next step should be a call to VerQueryValue to get the file version; but calling
+        // this function will cause an access violation in Win 7 systems; so this is a workaround
+        // until a better solution can be found:
+        // calculations are based on the VS_VERSIONINFO Structure
+        // 36 = SizeOf(wLength) + SizeOf(wValueLength) + SizeOf(wType) + (SizeOf(Char) * Length('VS_VERSION_INFO'))
+        // (4 - (DWORD(vsVersionInfoStart) mod 4)) = the padding length
+        vsVersionInfoStart := buffer;
+        fileInfo := PVSFixedFileInfo(vsVersionInfoStart + 36 + (4 - (DWORD(vsVersionInfoStart) mod 4)));
+
+        with fileInfo^ do
         begin
-          with fileInfo^ do
-          begin
-            Result := IntToStr(dwFileVersionMS shr 16);
-            Result := Result + '.' + IntToStr(dwFileVersionMS and $FFFF);
-            Result := Result + '.' + IntToStr(dwFileVersionLS shr 16);
-            Result := Result + '.' + IntToStr(dwFileVersionLS and $FFFF);
-          end;
+          Result := IntToStr(dwFileVersionMS shr 16);
+          Result := Result + '.' + IntToStr(dwFileVersionMS and $FFFF);
+          Result := Result + '.' + IntToStr(dwFileVersionLS shr 16);
+          Result := Result + '.' + IntToStr(dwFileVersionLS and $FFFF);
         end;
       end;
     finally
