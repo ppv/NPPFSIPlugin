@@ -110,6 +110,11 @@ type
     /// Delete contenst of editor.
     /// </summary>
     procedure doOnEditorClearContextMenuClick(sender: TObject);
+    
+    /// <summary>
+    /// Copy text to the clipboard
+    /// </summary>
+    procedure doOnEditorCopyContextMenuClick(sender: TObject);    
   public
     constructor Create;
     destructor Destroy; override;
@@ -282,6 +287,7 @@ procedure TFSIViewer.createContextMenu;
 var
   ctxMenu: TPopupMenu;
   menu: TMenuItem;
+  menuCopy: TMenuItem;
 begin
   ctxMenu := TPopupMenu.Create(_editor);
 
@@ -289,6 +295,11 @@ begin
   menu.Caption := FSI_PLUGIN_EDITOR_CLEAR_MENU;
   menu.OnClick := doOnEditorClearContextMenuClick;
   ctxMenu.Items.Add(menu);
+
+  menuCopy := TMenuItem.Create(ctxMenu);
+  menuCopy.Caption := FSI_PLUGIN_EDITOR_COPY_MENU;
+  menuCopy.OnClick := doOnEditorClearContextMenuClick;
+  ctxMenu.Items.Add(menuCopy);  
 
 //  menu := TMenuItem.Create(ctxMenu);
 //  menu.Caption := FSI_PLUGIN_EDITOR_CANCELEVAL_MENU;
@@ -449,6 +460,11 @@ begin
 
     updateEditableAreaStart;
   end;
+end;
+
+procedure TFSIViewer.doOnEditorClearContextMenuClick(sender: TObject);
+begin
+  _editor.CopyToClipboard;
 end;
 
 {$ENDREGION}
