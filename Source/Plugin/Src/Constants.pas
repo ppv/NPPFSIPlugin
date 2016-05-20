@@ -41,6 +41,7 @@ resourcestring
   FSI_PLUGIN_CONFIG_MENU = 'Options';
   FSI_PLUGIN_ABOUT_MENU = 'About';
   FSI_PLUGIN_EDITOR_CLEAR_MENU = 'Clear';
+  FSI_PLUGIN_EDITOR_COPY_MENU = 'Copy';
   FSI_PLUGIN_EDITOR_CANCELEVAL_MENU = 'Cancel Evaluation';
   FSI_PLUGIN_START_FAILE_MSG = 'Failed to start FSI. Please make sure F# is installed and the' +
                                ' FSI binary path configuration is set properly';
