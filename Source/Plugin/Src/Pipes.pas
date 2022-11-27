@@ -4887,7 +4887,7 @@ begin
      Result := CreateWindowEx(0, ObjWndClass.lpszClassName, '', WS_POPUP, 0, 0, 0, 0, 0, 0, hInstance, nil);
      // Set method pointer
      if Assigned(Method) then
-        SetWindowLong(Result, GWL_WNDPROC, NativeInt(MakeObjectInstance(Method)));
+        SetWindowLongPtr(Result, GWL_WNDPROC, NativeInt(MakeObjectInstance(Method)));
   finally
      // Leave critical section
      LeaveCriticalSection(InstCritSect);
